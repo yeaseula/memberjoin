@@ -35,6 +35,7 @@ export class Members {
         const WholeContainer = document.createElement('div');
         WholeContainer.classList.add(divName); //ex.id-container
         const inputTag = document.createElement('p');
+        inputTag.classList.add('field-name')
         inputTag.textContent=tagName
 
         const inputBox = document.createElement('div')
@@ -71,6 +72,7 @@ export class Members {
         //필드이름
         const inputTag = document.createElement('p');
         inputTag.textContent=tagName
+        inputTag.classList.add('field-name')
 
         const inputBox = document.createElement('div')
 

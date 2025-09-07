@@ -4,36 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입 모듈 테스트</title>
+    <link rel="stylesheet" href="./assets/style.css">
     <script type="module" src="./js/page.js"></script>
-    <style>
-        * {box-sizing: border-box; padding: 0; margin: 0;}
-        section {
-            border: 1px solid #bdbdbd;
-        }
-        ul li {
-            list-style: none;
-        }
-        ul {
-            display: flex;
-            width: 100%;
-            gap: 5px;
-        }
-        li {
-            display: inline-block;
-            background-color: #757575;
-            color: #fff;
-            padding: 5px 12px;
-        }
-        li.active {
-            background-color: slateblue;
-        }
-        .container {
-            display: none;
-        }
-        .container.on {
-            display: block;
-        }
-    </style>
 </head>
 <body>
     <section>
@@ -41,13 +13,13 @@
             <li data-target="buyer" class="active"><span>구매회원가입</span></li>
             <li data-target="seller"><span>판매회원가입</span></li>
         </ul>
-        <div>
+        <div class="tab-container">
             <div class="buyer-box container on">
-                구매회원가입박스
+                <h3>구매회원가입박스</h3>
                 <form action=""></form>
             </div>
             <div class="seller-box container">
-                판매회원가입박스
+                <h3>판매회원가입박스</h3>
                 <form action=""></form>
             </div>
         </div>
