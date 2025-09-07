@@ -48,15 +48,9 @@ export class Members {
         WholeContainer.append(inputBox)
 
         if(tagName == '아이디') { //아이디 필드의 경우 중복확인 버튼 추가
-            const ChkButton = document.createElement('button')
-            ChkButton.classList.add('id-value-check')
-            ChkButton.textContent='중복확인'
-            inputBox.append(ChkButton)
+            this.valueCheckBtn('id-value-check','중복확인',inputBox)
         } else if(tagName == '사업자 등록번호') {
-            const ChkButton = document.createElement('button')
-            ChkButton.classList.add('seller-value-check')
-            ChkButton.textContent='인증'
-            inputBox.append(ChkButton)
+            this.valueCheckBtn('seller-value-check','인증',inputBox)
         }
 
         form.append(WholeContainer)
@@ -122,5 +116,12 @@ export class Members {
         // <input type="number" name="user-phone2">
         //  </div>
         // </div>
+    }
+
+    valueCheckBtn(className,textContent,inputBox){
+        let ChkButton = document.createElement('button')
+        ChkButton.classList.add(className)
+        ChkButton.textContent=textContent
+        inputBox.append(ChkButton)
     }
 }
