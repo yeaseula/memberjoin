@@ -1,20 +1,13 @@
 const $ = (node) => document.querySelector(node)
 
 export class Members {
-    constructor ({classname,id,pass,pass2,name,phone}) {
-        this.classname = classname;
-        this.id = id;
-        this.pass = pass;
-        this.pass2 = pass2;
-        this.name = name;
-        this.phone = phone;
+    constructor (infor) {
+        this.infor = infor;
         this.init()
     }
 
     init(){
-        //console.log(this.id) //obj
-        [this.id,this.pass,this.pass2,this.name,this.phone].forEach((ele)=>{
-            //console.log(ele)
+        Object.values(this.infor).forEach((ele)=>{
             const {
                 istrue,
                 requeire,
@@ -38,7 +31,7 @@ export class Members {
     }
 
     field(divName,tagName,inputType,inputName,maxlength){
-        const form = document.querySelector(`.${this.classname}-box form`);
+        const form = document.querySelector(`.${this.infor.classname}-box form`);
         const WholeContainer = document.createElement('div');
         WholeContainer.classList.add(divName); //ex.id-container
         const inputTag = document.createElement('p');
@@ -54,6 +47,18 @@ export class Members {
         inputBox.append(input)
         WholeContainer.append(inputBox)
 
+        if(tagName == '아이디') { //아이디 필드의 경우 중복확인 버튼 추가
+            const ChkButton = document.createElement('button')
+            ChkButton.classList.add('id-value-check')
+            ChkButton.textContent='중복확인'
+            inputBox.append(ChkButton)
+        } else if(tagName == '사업자 등록번호') {
+            const ChkButton = document.createElement('button')
+            ChkButton.classList.add('seller-value-check')
+            ChkButton.textContent='인증'
+            inputBox.append(ChkButton)
+        }
+
         form.append(WholeContainer)
 
         //html 구조입니다
@@ -65,7 +70,7 @@ export class Members {
         //</div>
     }
     phonefield(divName,tagName,inputType,inputName){
-        const form = document.querySelector('.buyer-box form');
+        const form = document.querySelector(`.${this.infor.classname}-box form`);
         const WholeContainer = document.createElement('div');
         WholeContainer.classList.add(divName);
 
