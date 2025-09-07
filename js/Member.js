@@ -31,7 +31,7 @@ export class Members {
     }
 
     field(divName,tagName,inputType,inputName,maxlength){
-        const form = document.querySelector(`.${this.infor.classname}-box form`);
+        const form = document.querySelector(`.${this.infor.classname}-box .form`);
         const WholeContainer = document.createElement('div');
         WholeContainer.classList.add(divName); //ex.id-container
         const inputTag = document.createElement('p');
@@ -65,7 +65,7 @@ export class Members {
         //</div>
     }
     phonefield(divName,tagName,inputType,inputName){
-        const form = document.querySelector(`.${this.infor.classname}-box form`);
+        const form = document.querySelector(`.${this.infor.classname}-box .form`);
         const WholeContainer = document.createElement('div');
         WholeContainer.classList.add(divName);
 
