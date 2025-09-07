@@ -18,7 +18,7 @@ export class Members {
                 maxlength
             } = ele;
 
-            if(ele !== this.phone) {
+            if(ele !== this.infor.phone) {
                 if(istrue) {
                     this.field(containerClass,tag,fieldType,fieldName,maxlength)
                 }
@@ -92,12 +92,12 @@ export class Members {
         phone1.setAttribute('type',inputType)
         phone1.setAttribute('name','user-phone1')
         const phone2 = document.createElement('input');
-        phone2.setAttribute('type',inputType)
+        phone2.setAttribute('type',`${inputType}2`)
         phone2.setAttribute('name','user-phone2')
 
-        inputBox.appendChild(select);
-        inputBox.appendChild(phone1)
-        inputBox.appendChild(phone2)
+        inputBox.append(select);
+        inputBox.append(phone1)
+        inputBox.append(phone2)
 
         WholeContainer.append(inputTag)
         WholeContainer.append(inputBox)
