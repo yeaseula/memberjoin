@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입 모듈 테스트</title>
+    <script type="module" src="./js/page.js"></script>
+    <style>
+        * {box-sizing: border-box; padding: 0; margin: 0;}
+        section {
+            border: 1px solid #bdbdbd;
+        }
+        ul li {
+            list-style: none;
+        }
+        ul {
+            display: flex;
+            width: 100%;
+            gap: 5px;
+        }
+        li {
+            display: inline-block;
+            background-color: #757575;
+            color: #fff;
+            padding: 5px 12px;
+        }
+        li.active {
+            background-color: slateblue;
+        }
+        .container {
+            display: none;
+        }
+        .container.on {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <ul class="tab-list">
+            <li data-target="normal" class="active"><span>구매회원가입</span></li>
+            <li data-target="purchase"><span>판매회원가입</span></li>
+        </ul>
+        <div>
+            <div class="normal-box container on">
+                구매회원가입박스
+            </div>
+            <div class="purchase-box container">
+                판매회원가입박스
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const $ = (node) => document.querySelector(node); // 작성 편의 및 가독성 위해 유틸함수 생성
+
+        const tab = $('.tab-list')
+        tab.addEventListener('click',(e)=>{ //event 위임
+            e.preventDefault();
+            const li = document.querySelectorAll('li');
+            const targetli = e.target.closest('li');
+            const targetdata = targetli.dataset.target;
+            //console.log(li.dataset.target) // target or purchase
+            const targetContainer = $(`.${targetdata}-box`);
+            const isTargetOn = targetContainer.classList.contains('on')
+            const Container = document.querySelectorAll('.container');
+
+            li.forEach((ele)=>{
+                if(ele.classList.contains('active')) {
+                    ele.classList.remove('active')
+                }
+            })
+            targetli.classList.add('active')
+
+            Container.forEach((ele)=>{
+                if(ele.classList.contains('on')) {
+                    ele.classList.remove('on')
+                }
+            })
+            targetContainer.classList.add('on')
+        })
+    </script>
+</body>
+</html>
