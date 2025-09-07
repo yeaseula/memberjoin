@@ -12,48 +12,35 @@ export class Members {
     }
 
     init(){
-        const type = this.classname;
         //console.log(this.id) //obj
-        const {
-            tag:idTagName,istrue:idIstrue,requeire:idReq,maxlength:idMax
-        } = this.id;
-        const {
-            tag:passTagName,istrue:passIstrue,requeire:passReq,maxlength:passMax
-        } = this.pass;
-        const {
-            tag:pass2TagName,istrue:pass2Istrue,requeire:pass2Req,maxlength:pass2Max
-        } = this.pass2;
-        const {
-            tag:nameTag,istrue:nameIstrue,requeire:nameReq,maxlength:nameMax
-        } = this.name;
-        const {
-            tag:phoneTag,istrue:phoneIstrue,requeire:phoneReq,maxlength:phoneMax
-        } = this.phone;
-        //console.log(istrue)
-        //console.log(idIstrue)
+        [this.id,this.pass,this.pass2,this.name,this.phone].forEach((ele)=>{
+            //console.log(ele)
+            const {
+                istrue,
+                requeire,
+                containerClass,
+                tag,
+                fieldType,
+                fieldName,
+                maxlength
+            } = ele;
 
-        if(idIstrue) {
-            this.field('id-container','아이디','text','user-id')
-        }
-        if(passIstrue) {
-            this.field('pass-container','비밀번호','password','user-pass')
-        }
-        if(pass2Istrue) {
-            this.field('pass2-container','비밀번호 확인','password','user-pass2')
-        }
-        if(nameIstrue) {
-            this.field('name-container','이름','text','user-name')
-        }
-        if(phoneIstrue) {
-            this.phonefield('phone-container','휴대폰번호','number','user-phone')
-        }
-
+            if(ele !== this.phone) {
+                if(istrue) {
+                    this.field(containerClass,tag,fieldType,fieldName,maxlength)
+                }
+            } else {
+                if(istrue) {
+                    this.phonefield(containerClass,tag,fieldType,fieldName,maxlength)
+                }
+            }
+        })
     }
 
-    field(divName,tagName,inputType,inputName){
-        const bodys = document.querySelector('.buyer-box form');
-        const div = document.createElement('div');
-        div.classList.add(divName);
+    field(divName,tagName,inputType,inputName,maxlength){
+        const form = document.querySelector(`.${this.classname}-box form`);
+        const WholeContainer = document.createElement('div');
+        WholeContainer.classList.add(divName); //ex.id-container
         const inputTag = document.createElement('p');
         inputTag.textContent=tagName
 
@@ -61,17 +48,26 @@ export class Members {
         const input = document.createElement('input')
         input.setAttribute('type',inputType)
         input.setAttribute('name',inputName)
+        input.setAttribute('maxlength',maxlength)
 
-        div.append(inputTag)
+        WholeContainer.append(inputTag)
         inputBox.append(input)
+        WholeContainer.append(inputBox)
 
-        bodys.append(div)
-        bodys.append(inputBox)
+        form.append(WholeContainer)
+
+        //html 구조입니다
+        //<div class="id-container">
+        // <p>아이디</p>
+        // <div>
+        //      <input type="text" name="user-id" maxlength="10">
+        // </div>
+        //</div>
     }
     phonefield(divName,tagName,inputType,inputName){
         const form = document.querySelector('.buyer-box form');
-        const divs = document.createElement('div');
-        divs.classList.add(divName);
+        const WholeContainer = document.createElement('div');
+        WholeContainer.classList.add(divName);
 
         //필드이름
         const inputTag = document.createElement('p');
@@ -90,7 +86,7 @@ export class Members {
             option.textContent = num;  // 화면에 보이는 값
             select.appendChild(option);
         });
-
+        //중간,마지막 번호 필드
         const phone1 = document.createElement('input');
         phone1.setAttribute('type',inputType)
         phone1.setAttribute('name','user-phone1')
@@ -102,9 +98,24 @@ export class Members {
         inputBox.appendChild(phone1)
         inputBox.appendChild(phone2)
 
-        divs.append(inputTag)
-        divs.append(inputBox)
+        WholeContainer.append(inputTag)
+        WholeContainer.append(inputBox)
 
-        form.append(divs)
+        form.append(WholeContainer)
+
+        //html 구조입니다
+        //<div class="phone-container">
+        // <p>휴대폰 번호</p>
+        // <div>
+        // <select name="user-phone">
+        //  <option value="010">010</option>
+        //  <option value="011">011</option>
+        //  <option value="019">019</option>
+        //  <option value="016">016</option>
+        // </select>
+        // <input type="number" name="user-phone1">
+        // <input type="number" name="user-phone2">
+        //  </div>
+        // </div>
     }
 }
