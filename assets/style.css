@@ -48,13 +48,14 @@ h3 {
     margin-bottom: 10px;
 }
 .container form > div[class*="id-container"] > div,
+.container form > div[class*="phone-container"] > div,
 .container form > div[class*="sellernumber"] > div {
     display: flex;
     gap: 12px;
     align-items: center;
 }
 /* 기본 input 필드 속성입니다 */
-input {
+input,select {
     width: 100%;
     height: 54px;
     padding: 0 9px;
@@ -65,8 +66,14 @@ input[name*="user-id"],
 input[name*="sellernumber"] {
   width: calc(100% - 134px);
 }
+
 .id-value-check,.seller-value-check {
     display: inline-block;
     width: 122px;
     height: 54px;
+}
+
+.container form > div[class*="phone-container"] > div select,
+.container form > div[class*="phone-container"] > div input {
+    flex: 1;
 }
