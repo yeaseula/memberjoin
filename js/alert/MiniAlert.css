@@ -18,7 +18,7 @@
   min-width: 36rem;
   height: 20rem;
   padding: 4.2rem 7.5rem;
-  background-color: var(--color-white);
+  background-color: #fff;
   text-align: center;
   overflow: hidden;
   display: flex;
@@ -44,7 +44,7 @@
   display: inline;
   width: 2.2rem;
   height: 2.2rem;
-  background: url("../assets/images/close-btn.svg");
+  background: url("../../assets/img/check-color.svg");
   background-position: center;
   background-repeat: no-repeat;
   border: none;
@@ -74,15 +74,18 @@
   align-items: center;
   width: 120px;
   min-width: 100px;
+  height: 34px;
   /* flex-basis: 100px; */
   border: none;
-  box-shadow: inset 0 0 0 1px var(--gray-300);
+  box-shadow: inset 0 0 0 1px #e0e0e0;
   color: #fff;
   padding: 0 20px;
   border-radius: 0.5rem;
   font-size: 1.6rem;
   cursor: pointer;
   flex: 1;
+  background-color: #21bf48;
+  color: #fff;
 }
 .alert-btn:hover {
   color: #fff;
@@ -90,9 +93,9 @@
 
 /* 취소 버튼: 흰색 배경에 회색 텍스트 */
 .btn-cancel {
-  background-color: var(--color-white);
+  background-color: #fff;
   color: var(--gray-700);
-  border: 0.1rem solid var(--gray-300);
+  border: 0.1rem solid #e0e0e0;
 }
 
 /* 화살표 아이콘 효과 */
@@ -103,13 +106,13 @@
 /* btn-cancel 호버 효과 */
 .btn-cancel:hover {
   text-indent: 1rem;
-  background-color: var(--gray-50);
+  background-color: #fafafa;
 }
 
 /* 확인 버튼: 브랜드 컬러 배경에 흰색 텍스트 */
 .btn-confirm {
-  background-color: var(--main-500);
-  color: var(--color-white);
+  background-color: #21bf48;
+  color: #fff;
 }
 
 /* 버튼 호버 효과: 텍스트 들여쓰기로 인터랙션 표현 */
@@ -123,15 +126,15 @@
 
 /* 비활성화된 버튼 스타일 */
 .common-btn:disabled {
-  background-color: var(--gray-300);
-  color: var(--color-white);
+  background-color: #e0e0e0;
+  color: #fff;
   cursor: not-allowed; /* 클릭 불가 커서 */
 }
 
 /* 비활성화된 버튼은 호버 효과 제거 */
 .common-btn:disabled:hover {
   text-indent: 0;
-  background-color: var(--gray-300);
+  background-color: #e0e0e0;
   font-weight: 700;
 }
 
@@ -140,7 +143,7 @@
   display: flex;
   width: 15rem;
   height: 5rem;
-  border: 0.1rem solid var(--gray-300);
+  border: 0.1rem solid #e0e0e0;
   border-radius: 0.5rem;
 }
 
@@ -161,14 +164,14 @@
 
 /* 감소 버튼: 왼쪽 둥근 모서리 */
 .quantity-btn.decrease {
-  background-color: var(--color-white);
+  background-color: #fff;
   border: none;
   border-radius: 0.5rem 0 0 0.5rem;
 }
 
 /* 증가 버튼: 오른쪽 둥근 모서리 */
 .quantity-btn.increase {
-  background-color: var(--color-white);
+  background-color: #fff;
   border: none;
   border-radius: 0 0.5rem 0.5rem 0;
 }
@@ -183,8 +186,8 @@
   width: 5rem;
   height: auto;
   border: none;
-  border-left: 1px solid var(--gray-300);
-  border-right: 1px solid var(--gray-300);
+  border-left: 1px solid #e0e0e0;
+  border-right: 1px solid #e0e0e0;
   text-align: center;
   font-size: 1.6rem;
   font-weight: bold;
