@@ -190,27 +190,29 @@ const seller = new Members({
 
 function getFormFieldsArray(userType) {
     const fields = getFormFields(userType);
-    const defaultKey = ['id','pass','pass2','name','phoneM','phoneL'];
-    const sellerKey = ['sellerNum', 'sellerName'];
-    const key = userType == 'seller' ? [...defaultKey, ...sellerKey] : defaultKey;
-    //console.log(key)
-    const allArray = key.map((ele)=>($(`input[name="${userType}-user-${ele}"]`)))
-
+    const defaultKey = fields.form.querySelectorAll('input')
+    let allArray = []
+    defaultKey.forEach((ele)=>{
+        allArray.push(ele)
+    })
+    console.log(allArray)
     allArray.forEach((field,idx)=>{
-        //console.log(field) //console 찍어보기
         field.addEventListener("focus",(e)=>{
+
             allArray.forEach(()=>{warningClear()});
             const index = allArray.indexOf(e.target);
+
             for(let i=0; i<index; i++) {
-                if(allArray[i].value.trim() === '') {
+                if(allArray[i].value.trim() === '' && allArray[i].getAttribute('required')) {
                     const parantDiv = allArray[i].closest('div');
                     const target = parantDiv.querySelector('.empty-warning');
+
                     if(!target) {
                         const message = allArray[i].name == `${userType}-user-phoneM` ? '번호를 입력해주세요.' : '필수정보입니다.'
                         warningMessage(parantDiv,message)
                     }
                 } else {
-                    $('.empty-warning')?.remove()
+
                 }
             }
         })
