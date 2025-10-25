@@ -63,10 +63,7 @@ tab.addEventListener('click', (e) => {
     document.querySelectorAll('input').forEach((input) => (input.value = ''));
     document.querySelectorAll('input[type="checkbox"]').forEach((input) => (input.checked = false))
     document.querySelectorAll('select').forEach((select) => (select.value = '010'));
-    $('.id-warning')?.remove();
-    $('.empty-warning')?.remove();
-    removeClasses('.ischecked', ['ischecked']);
-    removeClasses('.warning', ['warning']);
+
     // 이벤트 재바인딩 및 유효성 검사
     validationAll(targetdata);
     bindJoinBtnActiveEvents(targetdata);
@@ -198,10 +195,11 @@ function getFormFieldsArray(userType) {
     const key = userType == 'seller' ? [...defaultKey, ...sellerKey] : defaultKey;
     //console.log(key)
     const allArray = key.map((ele)=>($(`input[name="${userType}-user-${ele}"]`)))
+
     allArray.forEach((field,idx)=>{
         //console.log(field) //console 찍어보기
         field.addEventListener("focus",(e)=>{
-            allArray.forEach((ele)=>{warningClear()});
+            allArray.forEach(()=>{warningClear()});
             const index = allArray.indexOf(e.target);
             for(let i=0; i<index; i++) {
                 if(allArray[i].value.trim() === '') {
@@ -296,6 +294,7 @@ function removeClasses(selectors, classes) {
         el.classList.remove(...classes);
     });
 }
+
 
 // 유효성 검사 및 이벤트 바인딩 통합
 function validationAll(userType) {
@@ -449,6 +448,13 @@ function isJoinBtnActive() {
 // 이벤트 바인딩 함수 (탭 전환 시마다 재바인딩)
 function bindJoinBtnActiveEvents(userType) {
     const fields = getFormFields(userType);
+    const form = fields.form;
+    const warning = form.querySelectorAll('.warning-text')
+
+    warning.forEach((text)=> {
+        text.remove()
+    })
+
     // 필수 입력값
     fields.form.querySelectorAll('input[required]').forEach((input) => {
         input.addEventListener('input', isJoinBtnActive);
