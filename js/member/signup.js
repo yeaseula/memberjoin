@@ -451,9 +451,13 @@ function bindJoinBtnActiveEvents(userType) {
     const form = fields.form;
     const warning = form.querySelectorAll('.warning-text')
 
+    //필드 하단 모든 경고문구 삭제
     warning.forEach((text)=> {
         text.remove()
     })
+
+    //중복확인 버튼 disabled 해제
+    fields.idValueChk.removeAttribute('disabled');
 
     // 필수 입력값
     fields.form.querySelectorAll('input[required]').forEach((input) => {
