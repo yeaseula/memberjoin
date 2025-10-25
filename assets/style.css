@@ -114,7 +114,8 @@ select {
     border-radius: 6px;
     border: 1px solid #e0e0e0;
 }
-input:focus-visible {
+input:focus {
+    outline: none;
     border: 1px solid var(--main-500) !important;
 }
 input[type="checkbox"] {

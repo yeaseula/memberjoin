@@ -452,14 +452,21 @@ function bindJoinBtnActiveEvents(userType) {
     const fields = getFormFields(userType);
     const form = fields.form;
     const warning = form.querySelectorAll('.warning-text')
-
+    const check = form.querySelectorAll('.ischecked')
     //필드 하단 모든 경고문구 삭제
     warning.forEach((text)=> {
         text.remove()
     })
 
+    //input 필드 warning border css 해제
+    removeClasses('input',['warning'])
+
     //중복확인 버튼 disabled 해제
     fields.idValueChk.removeAttribute('disabled');
+
+    //check icon 해제
+    fields.pass.closest('div').classList.remove('ischecked');
+    fields.pass2.closest('div').classList.remove('ischecked');
 
     // 필수 입력값
     fields.form.querySelectorAll('input[required]').forEach((input) => {
