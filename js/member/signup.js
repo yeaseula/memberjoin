@@ -195,7 +195,7 @@ function getFormFieldsArray(userType) {
     defaultKey.forEach((ele)=>{
         allArray.push(ele)
     })
-    console.log(allArray)
+    //console.log(allArray)
     allArray.forEach((field,idx)=>{
         field.addEventListener("focus",(e)=>{
 
@@ -357,7 +357,7 @@ function validationAll(userType) {
     });
     // 비밀번호 입력 시 유효성 검사
     fields.pass.addEventListener('blur', (e) => {
-        const password = fields.pass.value;
+        const password = e.currentTarget.value;
         if(password == '') return;
         if (isValidPass(e.currentTarget.value)) {
             e.currentTarget.closest('div').classList.add('ischecked');
@@ -383,6 +383,15 @@ function validationAll(userType) {
         joinState.isPassMatch = false;
         updateJoinBtnState();
     });
+    fields.pass.addEventListener('input', (e) => {
+        const password = e.currentTarget.value;
+        if(password == '') {
+            e.currentTarget.closest('div').querySelector('.warning-text')?.remove()
+            e.currentTarget.closest('div').classList.remove('ischecked')
+            e.currentTarget.classList.remove('warning')
+            return
+        }
+    })
     // 비밀번호 재확인 입력 시 일치 검사
     fields.pass2.addEventListener('input', (e) => {
         const passwordValue = fields.pass.value;
