@@ -1,4 +1,4 @@
-const $ = (node) => document.querySelector(node)
+const $ = (node) => document.querySelector(node);
 
 export class Members {
     constructor (infor) {
@@ -20,18 +20,18 @@ export class Members {
 
             if(ele !== this.infor.phone) {
                 if(istrue) {
-                    this.field(containerClass,tag,fieldType,fieldName,maxlength)
+                    this.field(requeire,containerClass,tag,fieldType,fieldName,maxlength)
                 }
             } else {
                 if(istrue) {
-                    this.phonefield(containerClass,tag,fieldType,fieldName,maxlength)
+                    this.phonefield(requeire,containerClass,tag,fieldType,fieldName,maxlength)
                 }
             }
         })
     }
 
-    field(divName,tagName,inputType,inputName,maxlength){
-        const form = document.querySelector(`.${this.infor.classname}-box .form`);
+    field(requeire,divName,tagName,inputType,inputName,maxlength){
+        const form = document.querySelector(`.${this.infor.classname}-box form`);
         const WholeContainer = document.createElement('div');
         WholeContainer.classList.add(divName); //ex.id-container
         const inputTag = document.createElement('p');
@@ -42,6 +42,9 @@ export class Members {
         const input = document.createElement('input')
         input.setAttribute('type',inputType)
         input.setAttribute('name',inputName)
+        if(requeire) {
+            input.setAttribute('required',true)
+        }
         input.setAttribute('maxlength',maxlength)
 
         WholeContainer.append(inputTag)
@@ -56,16 +59,9 @@ export class Members {
 
         form.append(WholeContainer)
 
-        //html 구조입니다
-        //<div class="id-container">
-        // <p>아이디</p>
-        // <div>
-        //      <input type="text" name="user-id" maxlength="10">
-        // </div>
-        //</div>
     }
-    phonefield(divName,tagName,inputType,inputName){
-        const form = document.querySelector(`.${this.infor.classname}-box .form`);
+    phonefield(requeire,divName,tagName,inputType,inputName,maxlength){
+        const form = document.querySelector(`.${this.infor.classname}-box form`);
         const WholeContainer = document.createElement('div');
         WholeContainer.classList.add(divName);
 
@@ -88,41 +84,44 @@ export class Members {
             select.appendChild(option);
         });
         //중간,마지막 번호 필드
-        const phone1 = document.createElement('input');
+        const phone1 = document.createElement('input')
         phone1.setAttribute('type',inputType)
-        phone1.setAttribute('name','user-phone1')
-        const phone2 = document.createElement('input');
-        phone2.setAttribute('type',`${inputType}2`)
-        phone2.setAttribute('name','user-phone2')
+        phone1.setAttribute('name',`${inputName}M`)
+        phone1.setAttribute('maxlength',maxlength)
+        if(requeire) {
+            phone1.setAttribute('required',true)
+        }
+        const phone2 = document.createElement('input')
+        phone2.setAttribute('type',`${inputType}`)
+        phone2.setAttribute('name',`${inputName}L`)
+        phone2.setAttribute('maxlength',maxlength)
+        if(requeire) {
+            phone2.setAttribute('required',true)
+        }
 
-        inputBox.append(select);
+        phone1.addEventListener('input',this.limitLength)
+        phone2.addEventListener('input',this.limitLength)
+
+        //hidden
+        const resPhone = document.createElement('input')
+        resPhone.setAttribute('type','hidden')
+        resPhone.setAttribute('name',`${inputName}Res`)
+
+        inputBox.append(select)
         inputBox.append(phone1)
         inputBox.append(phone2)
+        inputBox.append(resPhone)
 
         WholeContainer.append(inputTag)
         WholeContainer.append(inputBox)
 
         form.append(WholeContainer)
-
-        //html 구조입니다
-        //<div class="phone-container">
-        // <p>휴대폰 번호</p>
-        // <div>
-        // <select name="user-phone">
-        //  <option value="010">010</option>
-        //  <option value="011">011</option>
-        //  <option value="019">019</option>
-        //  <option value="016">016</option>
-        // </select>
-        // <input type="number" name="user-phone1">
-        // <input type="number" name="user-phone2">
-        //  </div>
-        // </div>
     }
 
     valueCheckBtn(className,textContent,inputBox){
         let ChkButton = document.createElement('button')
-        ChkButton.classList.add(className)
+        ChkButton.setAttribute('type','button')
+        ChkButton.classList.add(className,'common-btn')
         ChkButton.textContent=textContent
         inputBox.append(ChkButton)
     }

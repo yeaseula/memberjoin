@@ -5,57 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입 모듈 테스트</title>
     <link rel="stylesheet" href="./assets/style.css">
-    <script type="module" src="./js/page.js"></script>
+    <script type="module" src="./js/member/signup.js"></script>
 </head>
 <body>
-    <section>
-        <form action="">
-            <ul class="tab-list">
-                <li data-target="buyer" class="active"><span>구매회원가입</span></li>
-                <li data-target="seller"><span>판매회원가입</span></li>
-            </ul>
-            <div class="tab-container">
-                <div class="buyer-box container on">
-                    <h3>구매회원가입박스</h3>
-                    <div class="form"></div>
+    <section class="signup-section">
+        <h2 class="sr-only">회원가입 페이지</h2>
+            <div class="signup-form-container">
+                <ul class="tab-list">
+                    <li class="hidden-input"><input type="hidden" name="user-type-field" value="buyer"></li>
+                    <li data-target="buyer" class="active"><button type="button" class="fw-m">구매회원가입</button></li>
+                    <li data-target="seller"><button type="button" class="fw-m">판매회원가입</button></li>
+                </ul>
+                <div class="tab-container">
+                    <div class="buyer-box container on">
+                        <h3 class="sr-only">구매회원가입박스</h3>
+                        <form action="#"></form>
+                    </div>
+                    <div class="seller-box container">
+                        <h3 class="sr-only">판매회원가입박스</h3>
+                        <form action="#"></form>
+                    </div>
                 </div>
-                <div class="seller-box container">
-                    <h3>판매회원가입박스</h3>
-                    <div class="form"></div>
+                <div class="signup-agreement">
+                    <label for="agreement">
+                        <input type="checkbox" name="agreement" id="agreement">
+                    </label>
+                    <p>
+                        호두샵의 <a href="#">이용약관</a> 및 <a href="#">개인정보처리방침</a>에 대한 내용을 확인하였고 동의합니다.
+                    </p>
                 </div>
+                <button type="button" class="join-btn common-btn">가입하기</button>
             </div>
-            <button type="submit" class="join-btn">가입하기</button>
-        </form>
     </section>
-
-    <script>
-        const $ = (node) => document.querySelector(node); // 작성 편의 및 가독성 위해 유틸함수 생성
-
-        const tab = $('.tab-list')
-        tab.addEventListener('click',(e)=>{ //event 위임
-            e.preventDefault();
-            const li = document.querySelectorAll('li');
-            const targetli = e.target.closest('li');
-            const targetdata = targetli.dataset.target;
-            //console.log(li.dataset.target) // target or purchase
-            const targetContainer = $(`.${targetdata}-box`);
-            const isTargetOn = targetContainer.classList.contains('on')
-            const Container = document.querySelectorAll('.container');
-
-            li.forEach((ele)=>{
-                if(ele.classList.contains('active')) {
-                    ele.classList.remove('active')
-                }
-            })
-            targetli.classList.add('active')
-
-            Container.forEach((ele)=>{
-                if(ele.classList.contains('on')) {
-                    ele.classList.remove('on')
-                }
-            })
-            targetContainer.classList.add('on')
-        })
-    </script>
 </body>
 </html>
