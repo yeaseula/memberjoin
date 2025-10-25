@@ -4,6 +4,13 @@
 필수 입력 필드 확인, 중복검사, 비밀번호 유효성 검사 등 전 과정을 자동화합니다.
 프로젝트를 위해 만들었지만, 추후 다른 곳에도 기능을 사용할 수 있도록 모듈화 작업했습니다.
 
+## 실행 방법
+하단 링크를 클릭하면 접속 가능합니다.
+[github 배포주소](https://yeaseula.github.io/memberjoin/)
+
+## 시연 영상
+![회원가입 전체영상 (1)](https://github.com/user-attachments/assets/4ea8c488-64b9-44e9-9f1e-a9538fe4b079)
+
 
 ## 주요 기능
 
@@ -71,5 +78,6 @@ const joinState = {
 ## 작업 예정
 
 typescript로 리팩토링 예정입니다.
+
 
 
