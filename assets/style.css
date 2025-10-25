@@ -114,7 +114,7 @@ select {
     border-radius: 6px;
     border: 1px solid #e0e0e0;
 }
-input:focus {
+input:not([type="checkbox"]):focus {
     outline: none;
     border: 1px solid var(--main-500) !important;
 }
@@ -197,6 +197,7 @@ div[class*="pass"] > div.ischecked::after {
 }
 
 button:disabled {
+    cursor: initial;
     background-color: #e0e0e0;
     border: 1px solid #e0e0e0;
 }
